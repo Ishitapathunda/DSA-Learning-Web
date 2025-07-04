@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Linked-List - DSA Learning Resource</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="mainHeader">
+    <h1>Linked-List</h1>
+    <nav>
+      <ul>
+        <li><a href="./home.html">Home</a></li>
+        <li class="active"><a href="./data-structures.html">Data Structures</a></li>
+        <li><a href="./algorithms.html">Algorithms</a></li>
+        <li><a href="./problems.html">Practice Problems</a></li>
+        <li><a href="./aboutus.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Content inside container -->
+  <div class="container">
+    <h2>Introduction to Linked list</h2>
+    <p>
+        A Linked List is a linear data structure where elements (called nodes) are stored in memory non-contiguously, and each node points to the next node using a pointer.
+
+
+    </p>
+
+    <h3>Key Properties</h3>
+    <ul>
+      <li>Dynamic Size: Can grow/shrink at runtime.</li>
+      <li>Efficient Insertion/Deletion: Especially at the beginning/middle.</li>
+      <li>Sequential Access: No direct access to elements (unlike arrays).</li>
+      <li>Each Node: Stores data & Has a pointer to the next node</li>
+    </ul>
+    <h3>Types of Linked-list</h3>
+    <ul>
+        <li>Singly Linked List - points to next node only</li>
+        <li>Doubly Linked List - points to both next and previous nodes</li>
+        <li>Circular Linked List - last node points to the first</li>
+    </ul>
+    <h3>Example in C++</h3>
+    <pre><code>
+#include <iostream>
+using namespace std;
+
+// Node structure
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Function to print the linked list
+void printList(Node* head) {
+    Node* temp = head;
+    while (temp != nullptr) {
+        cout << temp->data << " -> ";
+        temp = temp->next;
+    }
+    cout << "NULL\n";
+}
+
+int main() {
+    // Creating nodes
+    Node* head = new Node{10, nullptr};
+    head->next = new Node{20, nullptr};
+    head->next->next = new Node{30, nullptr};
+
+    // Print the list
+    printList(head);
+
+    return 0;
+}
+
+    </code></pre>
+
+    <h3>Learning resource</h3>
+    <p>
+      <strong>Readings</strong> <a href="https://medium.com/basecs/whats-a-linked-list-anyway-part-1-d8b7e6508b9d">Linked-List</a>
+      <br>
+      <strong>Videos</strong> <a href="https://www.coursera.org/lecture/data-structures/singly-linked-lists-kHhgK">Linked-List</a>
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mainFooter">
+    <p>&copy; 2025 Ishita & Riya | DSA Learning Resource</p>
+  </footer>
+</body>
+</html>

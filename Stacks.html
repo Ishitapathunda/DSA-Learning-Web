@@ -1,0 +1,115 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stacks & Queues - DSA Learning Resource</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="mainHeader">
+    <h1>Arrays</h1>
+    <nav>
+      <ul>
+        <li><a href="./home.html">Home</a></li>
+        <li class="active"><a href="./data-structures.html">Data Structures</a></li>
+        <li><a href="./algorithms.html">Algorithms</a></li>
+        <li><a href="./problems.html">Practice Problems</a></li>
+        <li><a href="./aboutus.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Content inside container -->
+  <div class="container">
+    <h2>Introduction to Stacks</h2>
+    <p>
+      A Stack is a linear data structure that follows LIFO (Last In, First Out) principle.
+Think of it like a stack of plates—you add/remove from the top.
+    </p>
+
+    <h3>Key Properties</h3>
+    <ul>
+      <li>Insertion (push) and deletion (pop) happen at the top.</li>
+      <li>Access only the top element.</li>
+      <li>Used in: function calls, undo operations, expression evaluation, etc.</li>
+    </ul>
+
+    <h3>Example in C++</h3>
+    <pre><code>
+#include &lt;iostream&gt;
+#include &lt;stack&gt;
+using namespace std;
+
+int main() {
+    stack &lt;int&gt s;
+    s.push(10);
+    s.push(20);
+    s.push(30);
+
+    cout << "Top: " << s.top() << endl;  // 30
+    s.pop();  // removes 30
+
+    cout << "New Top: " << s.top() << endl;  // 20
+    return 0;
+}
+
+    </code></pre>
+
+    <h3>Learning resource</h3>
+    <p>
+      <strong>Readings</strong> <a href="https://medium.com/basecs/stacks-and-overflows-dbcf7854dc67">Stacks</a>
+      <br>
+      <strong>Videos</strong> <a href="https://www.coursera.org/lecture/data-structures/stacks-UdKzQ">Stacks</a>
+    </p>
+  </div>
+
+    <div class="container">
+    <h2>Introduction to Queues</h2>
+    <p>
+      A Queue is a linear data structure that follows FIFO (First In, First Out) principle.
+Think of it like a line at a ticket counter—first come, first served.
+    </p>
+
+    <h3>Key Properties</h3>
+    <ul>
+      <li>Insertion (enqueue) at the rear.</li>
+      <li>Deletion (dequeue) from the front.</li>
+      <li>Used in: scheduling, buffering, BFS (graphs), etc.</li>
+    </ul>
+
+    <h3>Example in C++</h3>
+    <pre><code>
+#include &lt;iostream&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main() {
+    queue&lt;int&gt; q;
+    q.push(100);
+    q.push(200);
+    q.push(300);
+
+    cout << "Front: " << q.front() << endl;  // 100
+    q.pop();  // removes 100
+
+    cout << "New Front: " << q.front() << endl;  // 200
+    return 0;
+}
+
+    </code></pre>
+
+    <h3>Learning resource</h3>
+    <p>
+      <strong>Readings</strong> <a href="https://medium.com/basecs/to-queue-or-not-to-queue-2653bcde5b04">Queues</a>
+      <br>
+      <strong>Videos</strong> <a href="https://www.coursera.org/lecture/data-structures/queues-EShpq">Queues</a>
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mainFooter">
+    <p>&copy; 2025 Ishita & Riya | DSA Learning Resource</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Graphs - DSA Learning Resource</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="mainHeader">
+    <h1>Graphs</h1>
+    <nav>
+      <ul>
+        <li><a href="./home.html">Home</a></li>
+        <li class="active"><a href="./data-structures.html">Data Structures</a></li>
+        <li><a href="./algorithms.html">Algorithms</a></li>
+        <li><a href="./problems.html">Practice Problems</a></li>
+        <li><a href="./aboutus.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Content inside container -->
+  <div class="container">
+    <h2>Introduction to Graphs</h2>
+    <p>
+      A graph is a set of nodes (vertices) connected by edges.
+Used in maps, networks, social media, etc.
+    </p>
+
+    <h3>Key Properties</h3>
+    <ul>
+      <li>Vertex (Node): A point</li>
+      <li>Edge: Connection between nodes O(1)</li>
+      <li>Directed Graph: Edges have direction (A → B)</li>
+      <li>Undirected Graph: No direction (A — B)</li>
+      <li>Weighted Graph: Edges have weights (costs)</li>
+      <li>Cycle: A path that starts and ends at same node</li>
+      <li>Connected Graph: Path exists between any two nodes</li>
+      <li>Adjacency List / Matrix: Ways to represent a graph</li>
+    </ul>
+
+    <h3>Example in C++</h3>
+    <pre><code>
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+    int V = 4; // number of vertices
+    vector &lt;vector&lt;int&gt;&gt; graph(V);
+
+    // Add edges (undirected)
+    graph[0].push_back(1);
+    graph[1].push_back(0);
+
+    graph[1].push_back(2);
+    graph[2].push_back(1);
+
+    graph[2].push_back(3);
+    graph[3].push_back(2);
+
+    // Print adjacency list
+    for (int i = 0; i < V; i++) {
+        cout << "Node " << i << ": ";
+        for (int v : graph[i]) {
+            cout << v << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
+    </code></pre>
+
+    <h3>Learning resource</h3>
+    <p>
+      <strong>Readings</strong> <a href="https://medium.com/basecs/from-theory-to-practice-representing-graphs-cfd782c5be38">Graphs</a>
+      <br>
+      <strong>more resource</strong> <a href="https://medium.com/basecs/deep-dive-through-a-graph-dfs-traversal-8177df5d0f13">Graphs</a>
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mainFooter">
+    <p>&copy; 2025 Ishita & Riya | DSA Learning Resource</p>
+  </footer>
+</body>
+</html>

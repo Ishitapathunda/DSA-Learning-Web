@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hash table - DSA Learning Resource</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="mainHeader">
+    <h1>Hash table</h1>
+    <nav>
+      <ul>
+        <li><a href="./home.html">Home</a></li>
+        <li class="active"><a href="./data-structures.html">Data Structures</a></li>
+        <li><a href="./algorithms.html">Algorithms</a></li>
+        <li><a href="./problems.html">Practice Problems</a></li>
+        <li><a href="./aboutus.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Content inside container -->
+  <div class="container">
+    <h2>Introduction to Hash table</h2>
+    <p>
+      A Hash Table is a data structure that stores key-value pairs using a hash function to map keys to array indices for fast access.
+    </p>
+
+    <h3>Key Properties</h3>
+    <ul>
+      <li>Key → Index using a hash function</li>
+      <li>Fast Access: Average O(1) time for insert, search, delete</li>
+      <li>Handles Collisions using chaining or open addressing</li>
+      <li>Unordered data storage</li>
+      <li>Used in dictionaries, caches, sets, etc.</li>
+    </ul>
+
+    <h3>Example in C++</h3>
+    <pre><code>
+#include &lt;iostream&gt;
+#include &lt;unordered_map&gt;
+using namespace std;
+
+int main() {
+    unordered_map&lt;string, int&gt; marks;
+
+    marks["Alice"] = 90;
+    marks["Bob"] = 80;
+
+    cout << "Alice's marks: " << marks["Alice"] << endl;
+
+    // Check if key exists
+    if (marks.count("Bob"))
+        cout << "Bob is present." << endl;
+
+    return 0;
+}
+
+    </code></pre>
+
+    <h3>Learning resource</h3>
+    <p>
+      <strong>Readings</strong> <a href="https://medium.com/basecs/taking-hash-tables-off-the-shelf-139cbf4752f0">Hash table</a>
+      <br>
+      <strong>Videos</strong> <a href="https://www.coursera.org/lecture/data-structures-optimizing-performance/core-hash-tables-m7UuP">Hash table</a>
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mainFooter">
+    <p>&copy; 2025 Ishita & Riya | DSA Learning Resource</p>
+  </footer>
+</body>
+</html>
