@@ -1,0 +1,145 @@
+// Prisma schema for the DSA Learning Web platform.
+// Local dev uses SQLite (file-based, zero setup). Swap the datasource
+// to postgresql/mysql later by changing `provider` + `DATABASE_URL`.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ------------------------------------------------------------------
+// User
+// ------------------------------------------------------------------
+model User {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  email        String   @unique
+  passwordHash String // bcrypt hash only — never store plain text passwords
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  submissions Submission[]
+  progress    Progress[]
+  badges      UserBadge[]
+  streak      UserStreak?
+
+  @@map("users")
+}
+
+// ------------------------------------------------------------------
+// Problem catalog (populated in Phase 3 from the existing 55 problems)
+// ------------------------------------------------------------------
+model Problem {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  topic       String
+  difficulty  String // "Easy" | "Medium" | "Hard"
+  description String
+  // Stored as JSON strings (SQLite has no native JSON column type in Prisma).
+  examples    String // JSON: [{ input, output, explanation? }]
+  constraints String // JSON: string[]
+  starterCode String? // JSON: { cpp: "..." }
+  language    String   @default("cpp")
+  // Hidden judge test cases (never sent to the client as-is): JSON array of
+  // { input, expectedOutput }. Null/absent means this problem doesn't support
+  // graded execution yet — the frontend falls back to a read-only view.
+  testCases   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  submissions Submission[]
+  progress    Progress[]
+
+  @@map("problems")
+}
+
+// ------------------------------------------------------------------
+// Submission — one row per run/submit attempt
+// ------------------------------------------------------------------
+model Submission {
+  id        String   @id @default(cuid())
+  userId    String
+  problemId String
+  code      String
+  language  String   @default("cpp")
+  mode      String // "RUN" | "SUBMIT"
+  status    String // "PENDING" | "PASSED" | "FAILED" | "ERROR"
+  output    String? // stdout/stderr or judged summary, JSON string
+  runtimeMs Int?
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problem Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([problemId])
+  @@map("submissions")
+}
+
+// ------------------------------------------------------------------
+// Progress — one row per (user, problem) pair
+// ------------------------------------------------------------------
+model Progress {
+  id        String    @id @default(cuid())
+  userId    String
+  problemId String
+  solved    Boolean   @default(false)
+  attempts  Int       @default(0)
+  solvedAt  DateTime?
+  updatedAt DateTime  @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problem Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, problemId])
+  @@map("progress")
+}
+
+// ------------------------------------------------------------------
+// Badge catalog + join table
+// ------------------------------------------------------------------
+model Badge {
+  id          String  @id @default(cuid())
+  key         String  @unique // e.g. "FIRST_PROBLEM", "STREAK_7"
+  name        String
+  description String
+  icon        String?
+
+  users UserBadge[]
+
+  @@map("badges")
+}
+
+model UserBadge {
+  id       String   @id @default(cuid())
+  userId   String
+  badgeId  String
+  earnedAt DateTime @default(now())
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badge Badge @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeId])
+  @@map("user_badges")
+}
+
+// ------------------------------------------------------------------
+// Streak — one row per user
+// ------------------------------------------------------------------
+model UserStreak {
+  id             String    @id @default(cuid())
+  userId         String    @unique
+  currentStreak  Int       @default(0)
+  longestStreak  Int       @default(0)
+  lastSolvedDate DateTime?
+  updatedAt      DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_streaks")
+}
