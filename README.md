@@ -102,7 +102,7 @@ The platform combines DSA learning with an online C++ coding environment, allowi
 
 The application follows a client-server architecture.
 
-```text
+text
                     ┌──────────────────────┐
                     │      React Frontend  │
                     │   TypeScript + Vite  │
